@@ -10,6 +10,15 @@ namespace FarmOptimizing.Farm
             set => Set(value);
         }
 
+        /// <summary>
+        /// As time goes on the climate might change. The plant grows or withers based on the change (or not) in the climate.
+        /// </summary>
+        /// <param name="climate"></param>
+        public void TimeStep(Climate climate)
+        {
+            Height += climate.Sun;
+        }
+
         public override string ToString()
         {
             return "" + Height;

@@ -29,18 +29,21 @@ namespace WpfTemplate
 
         private async Task RunSimulation()
         {
-            while (true)
+            for (int i = 0; i < 24; i++)
             {
                 await Task.Delay(100);
-                Tick();
+                var env = new Climate();
+                var rnd = new Random();
+                env.Sun = rnd.Next(0, 5);
+                Tick(env);
             }
         }
 
-        private void Tick()
+        private void Tick(Climate climate)
         {
             foreach (var plant in Plants)
             {
-                plant.Height++;
+                plant.TimeStep(climate);
             }
         }
     }

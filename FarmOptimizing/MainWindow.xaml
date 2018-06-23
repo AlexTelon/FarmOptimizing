@@ -24,7 +24,8 @@
         </WrapPanel>
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding Plants}"
-                 VerticalContentAlignment="Stretch">
+                 VerticalContentAlignment="Stretch"
+                 HorizontalContentAlignment="Stretch">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel IsItemsHost="True"
@@ -34,12 +35,14 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel VerticalAlignment="Bottom">
+                    <StackPanel VerticalAlignment="Bottom"
+                                HorizontalAlignment="Stretch">
                         <Rectangle Grid.Row="0"
                                    Width="10"
                                    Height="{Binding Height}"
                                    Fill="Green"></Rectangle>
-                        <WrapPanel Grid.Row="1">
+                        <WrapPanel Grid.Row="1"
+                                   Width="70">
                             <TextBlock Text="Height: " />
                             <TextBlock Text="{Binding Height}" FontWeight="Bold" />
                         </WrapPanel>
