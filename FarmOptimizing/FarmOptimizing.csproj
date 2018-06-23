@@ -54,6 +54,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Farm\Plant.cs" />
+    <Compile Include="Farm\Simulator.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Utils\BindableBase.cs" />
     <Compile Include="Utils\RelayCommand.cs" />

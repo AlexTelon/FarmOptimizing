@@ -14,9 +14,38 @@
     </Window.DataContext>
 
     <Grid>
-        <StackPanel>
-            <Label Content="{Binding HelloWorld}"/>
-            <ListView ItemsSource="{Binding CollectionOfWords}"></ListView>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0">
+            <Label Content="Options:"
+               Margin="10"/>
+        </WrapPanel>
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding Plants}"
+                 VerticalContentAlignment="Stretch">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel IsItemsHost="True"
+                                            Orientation="Horizontal" 
+                                            VerticalAlignment="Bottom"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel VerticalAlignment="Bottom">
+                        <Rectangle Grid.Row="0"
+                                   Width="10"
+                                   Height="{Binding Height}"
+                                   Fill="Green"></Rectangle>
+                        <WrapPanel Grid.Row="1">
+                            <TextBlock Text="Height: " />
+                            <TextBlock Text="{Binding Height}" FontWeight="Bold" />
+                        </WrapPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

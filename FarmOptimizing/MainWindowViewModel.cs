@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarmOptimizing.Farm;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,17 +11,37 @@ namespace WpfTemplate
 {
     class MainWindowViewModel : BindableBase
     {
-        public string HelloWorld
-        {
-            get => Get<string>();
-            set => Set(value);
-        }
-
-        public ObservableCollection<string> CollectionOfWords { get; set; } = new ObservableCollection<string>() { "a", "few", "words" };
+        public ObservableCollection<Plant> Plants { get; set; } = new ObservableCollection<Plant>() { };
 
         public MainWindowViewModel()
         {
-            HelloWorld = "hello world test string";
+            for (int i = 0; i < 8; i++)
+            {
+                var plant = new Plant()
+                {
+                    Height = i*10
+                };
+                Plants.Add(plant);
+            }
+
+            RunSimulation();
+        }
+
+        private async Task RunSimulation()
+        {
+            while (true)
+            {
+                await Task.Delay(100);
+                Tick();
+            }
+        }
+
+        private void Tick()
+        {
+            foreach (var plant in Plants)
+            {
+                plant.Height++;
+            }
         }
     }
 }
