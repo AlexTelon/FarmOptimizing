@@ -13,6 +13,18 @@ namespace WpfTemplate
     {
         public ObservableCollection<Plant> Plants { get; set; } = new ObservableCollection<Plant>() { };
 
+        public Climate CurrentClimate
+        {
+            get => Get<Climate>();
+            set => Set(value);
+        }
+
+        public int Time
+        {
+            get => Get<int>();
+            set => Set(value);
+        }
+
         public MainWindowViewModel()
         {
             for (int i = 0; i < 8; i++)
@@ -29,13 +41,16 @@ namespace WpfTemplate
 
         private async Task RunSimulation()
         {
-            for (int i = 0; i < 24; i++)
+            Time = 0;
+            for (int i = 0; i < 72; i++)
             {
+                Time++;
+
                 await Task.Delay(100);
-                var env = new Climate();
+                CurrentClimate = new Climate();
                 var rnd = new Random();
-                env.Sun = rnd.Next(0, 5);
-                Tick(env);
+                CurrentClimate.Sun = rnd.Next(0, 5);
+                Tick(CurrentClimate);
             }
         }
 
